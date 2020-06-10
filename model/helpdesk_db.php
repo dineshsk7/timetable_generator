@@ -1,7 +1,7 @@
 <?php
     function is_valid_helpdesk_login($username, $password) {
         global $db;
-        $query = 'SELECT * FROM helpdesk WHERE username = :username AND password  = :password';
+        $query = 'SELECT * FROM helpdesk WHERE username = :username AND u_password  = :password';
         $statement = $db->prepare($query);
         $statement->bindValue(':username', $username);
         $statement->bindValue(':password', $password);
