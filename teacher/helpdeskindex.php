@@ -13,10 +13,10 @@
 ?>
 <div class="loginbox">
 	<h1>Help Desk</h1><br>
-    <form action="../timetable_generator/authenticate/login.php" method="POST">
+    <form action="Entrydata.php" method="POST">
         <input type="submit" value="Time Table Entry Screen">
     </form>
-    <form action="../timetable_generator/authenticate/signup.php" method="POST">
+    <form action="generate.php" method="POST">
         <input type="submit" value="Generate Time Tabel">
     </form>
 	</div>
