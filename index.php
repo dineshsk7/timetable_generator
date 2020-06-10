@@ -6,10 +6,10 @@
 <body>
 	<div class="loginbox">
 	<h1>Home</h1><br>
-    <form action="../TimeTableGenerator/authenticate/login.php" method="POST">
+    <form action="../timetable_generator/authenticate/login.php" method="POST">
         <input type="submit" value="Login">
     </form>
-    <form action="../TimeTableGenerator/authenticate/signup.php" method="POST">
+    <form action="../timetable_generator/authenticate/signup.php" method="POST">
         <input type="submit" value="Signup">
     </form>
 	</div>
