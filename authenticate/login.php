@@ -15,7 +15,7 @@
 			header('Location: ../teacher/index.php');
 		} elseif(is_valid_helpdesk_login($username, $password)) {
 			$_SESSION['helpdesk'] = $username;
-			header('Location: ../teacher/helpDesk.php');
+			header('Location: ../teacher/helpdeskindex.php');
 		} else {
 			$error_message =  "Login Failed. Invalid Email or Password";
 			echo $error_message;
