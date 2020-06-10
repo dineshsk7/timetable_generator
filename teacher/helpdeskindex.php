@@ -13,14 +13,10 @@
 ?>
 <div class="loginbox">
 	<h1>Help Desk</h1><br>
-<<<<<<< HEAD
    <form action="../teacher/helpDesk.php" method="POST">
-=======
-    <form action="Entrydata.php" method="POST">
->>>>>>> b8729b4f0aadca7073c7d918f724a30241583619
         <input type="submit" value="Time Table Entry Screen">
     </form>
-    <form action="generate.php" method="POST">
+    <form action="../teacher/generate.php" method="POST">
         <input type="submit" value="Generate Time Tabel">
     </form>
 	</div>
