@@ -31,7 +31,7 @@
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-user"> </i></span>
-											<input type="text" name="id" class="form-control" placeholder="Enter Staff ID">
+											<input type="text" name="id" class="form-control" placeholder="Enter Staff ID [use only 6 digits]">
 										</div>
 									</div>
 									<div class="form-group">
@@ -41,7 +41,7 @@
   											<option >Select Staff Name</option>
  											 <?php
    											 foreach($names as $name) { ?>
-     										 <option value="<?php echo $name ?>"><?php echo $name['username'] ?></option>
+     										 <option value="<?php echo $name['username'] ?>"><?php echo $name['username'] ?></option>
  											 <?php
    											 } ?>
 </select> 
