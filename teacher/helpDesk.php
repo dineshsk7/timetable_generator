@@ -26,18 +26,18 @@
 <div class="col-md-4 col-md-offset-4" id="login">
 						<section id="inner-wrapper" class="login">
 							<article>
-								<form action="entry.php" method="POST">
+								<form action="../model/helpDesk.php" method="POST">
 								    <p class="text-center">Time table entry</p></p>
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-user"> </i></span>
-											<input type="text" name="id" class="form-control" placeholder="Enter Staff ID [use only 6 digits]">
+											<input type="text" name="id" class="form-control" placeholder="Enter Staff ID [use only 6 digits]" required>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
-											<select name="name" class="form-control">
+											<select name="name" class="form-control" required>
   											<option >Select Staff Name</option>
  											 <?php
    											 foreach($names as $name) { ?>
@@ -50,19 +50,19 @@
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-key"> </i></span>
-											<input type="text" name="subject" class="form-control" placeholder="Enter Subject">
+											<input type="text" name="subject" class="form-control" placeholder="Enter Subject" required>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-key"> </i></span>
-											<input type="text" name="Section" class="form-control" placeholder="Enter Section">
+											<input type="text" name="Section" class="form-control" placeholder="Enter Section" required>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-key"> </i></span>
-											<input type="text" name="periods" class="form-control" placeholder="Enter Number of Periods">
+											<input type="text" name="periods" class="form-control" placeholder="Enter Number of Periods" required>
 										</div>
 									</div>
 

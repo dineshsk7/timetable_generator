@@ -10,7 +10,7 @@ $s_periods = $_POST['periods'];
    $query = "INSERT INTO staff(s_id,s_name,s_subject,s_periods) VALUES(?,?,?,?)";
    $stmt1= $db->prepare($query);
    $stmt1->execute([$s_id,$s_name,$s_subject,$s_periods]);
-   header('Location: helpDesk.php');
+   header('Location: ../teacher/helpDesk.php');
    $error_message= "Sucessfully added!";
     echo "<script>alert('$error_message')</script>";
     }
