@@ -10,23 +10,62 @@
         unset($_SESSION['helpdesk']);
         header('Location: ../authenticate/login.php');
     }
+        require_once('../model/database.php');
+    if(isset($_POST['enter']))
+	{
+		// get the values
+		$table=$_POST['class'];
+    
+    try{
+    $query1="CREATE TABLE $table(day_order int(10) primary key,h1 varchar(30) NOT NULL,h2 varchar(30) NOT NULL,h3 varchar(30) NOT NULL,h4 varchar(30) NOT NULL,h5 varchar(30) NOT NULL,h6 varchar(30) NOT NULL,h7 varchar(30) NOT NULL,h8 varchar(30) NOT NULL)";
+    $db->exec($query1);
+    $in="INSERT INTO $table(day_order,h1,h2,h3,h4,h5,h6,h7,h8) values(?,?,?,?,?,?,?,?,?)";
+    $stmt3=$db->prepare($in);
+    for ($x = 1; $x <= 6; $x++) {
+        $stmt3->execute([$x,'-','-','-','-','-','-','-','-']);
+      }
+    
+    }
+    catch (PDOException $ex)
+{
+	$error_message = $ex->getMessage();
+          echo "<script>alert('$error_message')</script>";
+    
+}	
+    
+
+
+    $error_message= "Sucessfully added!";
+    echo "<script>alert('$error_message,$table')</script>";
+
+    
+
+	
+}
+		
+		
+
+
     	global $db;
 		$query = 'Select username from teachers';
 		$names=$db->query($query);
+		$sql = "SHOW TABLES";
+  		$statements = $db->prepare($sql);
+  		$statements->execute();
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="col-md-4 col-md-offset-4" id="login">
 						<section id="inner-wrapper" class="login">
 							<article>
-								<form action="entry.php" method="POST">
+								<form  method="POST">
 								    <p class="text-center">Generate Table</p></p>
 									<div class="form-group">
 										<div class="input-group">
@@ -72,15 +111,48 @@
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
-											<input type="text" name="class" class="form-control" placeholder="Enter Class Name">
+											<select name="class" class="form-control">
+  											<option> Select Class</option>
+ 											 <?php
+   											 foreach($statements as $statement) { if (!ctype_alpha($statement[0])){ ?>
+     										 <option value="<?php echo $statement[0] ?>"><?php echo $statement[0]; }?></option>
+ 											 <?php
+   											 } ?>
+</select> 
 										</div>
 									</div>
-
 									  <button type="submit" class="btn btn-success btn-block">Generate</button>
 								</form>
+								<button style=" margin-top: 10px;" class="btn btn-danger btn-block" data-target="#mymodel"  data-toggle="modal"> Create Class</button>
+							
+
 							</article>
 						</section>
 					</div>
+					 <div class="modal" id="mymodel"> 
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header" style=" background-color: #333; font-family: 'Josefin Sans', sans-serif;">
+                    <b><h3 style="color: #fff;" class="text-center">ENTER THE CLASS NAME</h3></b><br>
+                    <button style="color:white" type="button" class="close" data-dismiss="modal">&times;</button></div>
+                    <div class="modal-body" style="background-color: #63a4ff;
+background-image: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);">
+                      <form action="" method="POST">
+                      										<div class="form-group">
+										<div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
+                        <input type="text" class="form-control" name="class" placeholder="Enter Class Name">
+                    </div>
+                </div>
+                 <button type="submit" name="enter" class="btn btn-danger">ENTER</button>
+                      </form>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+		
 
 
 <style>
@@ -108,9 +180,6 @@
 	-webkit-transform: rotate(0);
 	-moz-transform: rotate(0);
 	transform: rotate(0);
-}
-.login article {
-	
 }
 .login .form-group {
 	margin-bottom:17px;
