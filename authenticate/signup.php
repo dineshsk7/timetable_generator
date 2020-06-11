@@ -11,13 +11,38 @@
 	try{
 	
 	$query="INSERT INTO $type(username,u_password) VALUES(?,?)";
-	$stmt1= $db->prepare($query);
-	$stmt1->execute([$username,$password]);
+    
+    $stmt1= $db->prepare($query);
+    $stmt1->execute([$username,$password]);
+    
+
 	
-	
+    
+    try{
+    $query1="CREATE TABLE $username(day_order int(10) primary key,h1 varchar(30) NOT NULL,h2 varchar(30) NOT NULL,h3 varchar(30) NOT NULL,h4 varchar(30) NOT NULL,h5 varchar(30) NOT NULL,h6 varchar(30) NOT NULL,h7 varchar(30) NOT NULL,h8 varchar(30) NOT NULL)";
+    $db->exec($query1);
+    $in="INSERT INTO $username(day_order,h1,h2,h3,h4,h5,h6,h7,h8) values(?,?,?,?,?,?,?,?,?)";
+    $stmt3=$db->prepare($in);
+    for ($x = 1; $x <= 6; $x++) {
+        $stmt3->execute([$x,'-','-','-','-','-','-','-','-']);
+      }
+    
+    }
+    catch (PDOException $ex)
+{
+	$error_message = $ex->getMessage();
+          echo "<script>alert('$error_message')</script>";
+    
+}	
+    
+
+
     $error_message= "Sucessfully added!";
     echo "<script>alert('$error_message,$type')</script>";
+
     header('Location: login.php');
+
+    
 
 	
 }
