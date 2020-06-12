@@ -19,6 +19,9 @@
     <form action="../teacher/generate.php" method="POST">
         <input type="submit" value="Generate Time Tabel">
     </form>
+    <form action = "" method = "POST">
+    <input type="submit" class="Logout" value="Logout" name = "logout">
+	</form>
 	</div>
   <style>
   body{

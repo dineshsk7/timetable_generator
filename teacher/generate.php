@@ -71,7 +71,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
 											<select name="name" class="form-control">
-  											<option >Select Staff Name</option>
+  											<option value="" selected>Select Staff Name</option>
  											 <?php
    											 foreach($names as $name) { ?>
      										 <option value="<?php echo $name['username'] ?>"><?php echo $name['username'] ?></option>
@@ -84,7 +84,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
 											<select name="day" class="form-control">
-  											<option >Select Day Order</option>
+  											<option value="" selected>Select Day Order</option>
  											 <?php
    											 for($i=1;$i<=6;$i++) { ?>
      										 <option value="<?php echo $i ?>"><?php echo("Day ".strval($i)) ?></option>
@@ -98,7 +98,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
 											<select name="hour" class="form-control">
-  											<option >Select Hour</option>
+  											<option value="" selected>Select Hour</option>
  											 <?php
    											 for($i=1;$i<=8;$i++) { ?>
      										 <option value="<?php echo "h".strval($i) ?>"><?php echo(strval($i)."st Hour") ?></option>
@@ -133,7 +133,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header" style=" background-color: #333; font-family: 'Josefin Sans', sans-serif;">
-                    <b><h3 style="color: #fff;" class="text-center">ENTER THE CLASS NAME</h3></b><br>
+                  <b><h3 style="color: #fff;" class="text-center">ENTER THE CLASS NAME</h3></b><br>
                     <button style="color:white" type="button" class="close" data-dismiss="modal">&times;</button></div>
                     <div class="modal-body" style="background-color: #63a4ff;
 background-image: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);">
@@ -144,7 +144,7 @@ background-image: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);">
                         <input type="text" class="form-control" name="class" placeholder="Enter Class Name">
                     </div>
                 </div>
-                 <button type="submit" name="enter" class="btn btn-danger">ENTER</button>
+                 <button style="margin-left: 45%;" type="submit" name="enter" class="btn btn-danger">ENTER</button>
                       </form>
                       
                     </div>
