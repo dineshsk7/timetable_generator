@@ -111,6 +111,8 @@ $stmt->execute([$class,$day]);
 $sql = "UPDATE $class SET $hour=? WHERE day_order=?";
 $stmt= $db->prepare($sql);
 $stmt->execute([$name,$day]);
+
+header('Location: ../teacher/generate.php');
 	}
 	else{
 		if($checker1==0){
