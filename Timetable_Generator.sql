@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 10, 2020 at 12:04 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: Jun 12, 2020 at 05:04 PM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -53,6 +53,96 @@ INSERT INTO `10a` (`day`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `h7`, `h8`) VALUES
 ('mon', 'tamil', 'english', 'maths', 'science', 'socialscience', 'tamil', 'maths', 'maths'),
 ('mon', 'tamil', 'english', 'maths', 'science', 'socialscience', 'tamil', 'maths', 'maths'),
 ('mon', 'tamil', 'english', 'maths', 'science', 'socialscience', 'tamil', 'maths', 'maths');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `12c`
+--
+
+CREATE TABLE `12c` (
+  `day_order` int(10) NOT NULL,
+  `h1` varchar(30) NOT NULL,
+  `h2` varchar(30) NOT NULL,
+  `h3` varchar(30) NOT NULL,
+  `h4` varchar(30) NOT NULL,
+  `h5` varchar(30) NOT NULL,
+  `h6` varchar(30) NOT NULL,
+  `h7` varchar(30) NOT NULL,
+  `h8` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `12c`
+--
+
+INSERT INTO `12c` (`day_order`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `h7`, `h8`) VALUES
+(1, '-', '-', '-', '-', '-', '-', '-', '-'),
+(2, '-', '-', '-', '-', '-', '-', '-', '-'),
+(3, '-', '-', '-', '-', '-', '-', '-', '-'),
+(4, '-', '-', '-', '-', '-', '-', '-', '-'),
+(5, '-', '-', '-', '-', '-', '-', '-', '-'),
+(6, '-', '-', '-', '-', '-', '-', '-', '-');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `13b`
+--
+
+CREATE TABLE `13b` (
+  `day_order` int(10) NOT NULL,
+  `h1` varchar(30) NOT NULL,
+  `h2` varchar(30) NOT NULL,
+  `h3` varchar(30) NOT NULL,
+  `h4` varchar(30) NOT NULL,
+  `h5` varchar(30) NOT NULL,
+  `h6` varchar(30) NOT NULL,
+  `h7` varchar(30) NOT NULL,
+  `h8` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `13b`
+--
+
+INSERT INTO `13b` (`day_order`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `h7`, `h8`) VALUES
+(1, '-', '-', '-', '-', '-', '-', '-', '-'),
+(2, '-', '-', '-', '-', '-', '-', '-', '-'),
+(3, '-', '-', '-', '-', '-', '-', '-', '-'),
+(4, '-', '-', '-', '-', '-', '-', '-', '-'),
+(5, '-', '-', '-', '-', '-', '-', '-', '-'),
+(6, '-', '-', '-', '-', '-', '-', '-', '-');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Ashok`
+--
+
+CREATE TABLE `Ashok` (
+  `day_order` int(10) NOT NULL,
+  `h1` varchar(30) NOT NULL,
+  `h2` varchar(30) NOT NULL,
+  `h3` varchar(30) NOT NULL,
+  `h4` varchar(30) NOT NULL,
+  `h5` varchar(30) NOT NULL,
+  `h6` varchar(30) NOT NULL,
+  `h7` varchar(30) NOT NULL,
+  `h8` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Ashok`
+--
+
+INSERT INTO `Ashok` (`day_order`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `h7`, `h8`) VALUES
+(1, '-', '-', '-', '-', '-', '-', '-', '-'),
+(2, '-', '-', '-', '-', '-', '-', '-', '-'),
+(3, '-', '-', '-', '-', '-', '-', '-', '-'),
+(4, '-', '-', '-', '-', '-', '-', '-', '-'),
+(5, '-', '-', '-', '-', '-', '-', '-', '-'),
+(6, '-', '-', '-', '-', '-', '-', '-', '-');
 
 -- --------------------------------------------------------
 
@@ -114,6 +204,9 @@ CREATE TABLE `staff` (
 
 INSERT INTO `staff` (`s_id`, `s_name`, `s_subject`, `s_periods`) VALUES
 (111, 'JAI', 'tamil', 4),
+(123, 'deepan', 'tamil', 34),
+(139, 'Ashok', 'tamil', 34),
+(150, 'deepan', 'tamil', 34),
 (222, 'SANKAR', 'english', 4),
 (333, 'KATHIR', 'maths', 4),
 (444, 'DINESH', 'science', 4),
@@ -135,6 +228,7 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`username`, `u_password`) VALUES
+('Ashok', 'ashok123'),
 ('deepan', 'jai123'),
 ('dinesh', 'jai123'),
 ('jai', 'jai123'),
@@ -144,6 +238,24 @@ INSERT INTO `teachers` (`username`, `u_password`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `12c`
+--
+ALTER TABLE `12c`
+  ADD PRIMARY KEY (`day_order`);
+
+--
+-- Indexes for table `13b`
+--
+ALTER TABLE `13b`
+  ADD PRIMARY KEY (`day_order`);
+
+--
+-- Indexes for table `Ashok`
+--
+ALTER TABLE `Ashok`
+  ADD PRIMARY KEY (`day_order`);
 
 --
 -- Indexes for table `class`
