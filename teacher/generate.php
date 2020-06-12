@@ -65,7 +65,7 @@
 <div class="col-md-4 col-md-offset-4" id="login">
 						<section id="inner-wrapper" class="login">
 							<article>
-								<form  method="POST">
+								<form  action="../model/generate.php" method="POST">
 								    <p class="text-center">Generate Table</p></p>
 									<div class="form-group">
 										<div class="input-group">
@@ -74,7 +74,7 @@
   											<option >Select Staff Name</option>
  											 <?php
    											 foreach($names as $name) { ?>
-     										 <option value="<?php echo $name ?>"><?php echo $name['username'] ?></option>
+     										 <option value="<?php echo $name['username'] ?>"><?php echo $name['username'] ?></option>
  											 <?php
    											 } ?>
 </select> 
@@ -101,7 +101,7 @@
   											<option >Select Hour</option>
  											 <?php
    											 for($i=1;$i<=8;$i++) { ?>
-     										 <option value="<?php echo $i ?>"><?php echo(strval($i)."st Hour") ?></option>
+     										 <option value="<?php echo "h".strval($i) ?>"><?php echo(strval($i)."st Hour") ?></option>
  											 <?php
    											 } ?>
 </select> 
@@ -112,7 +112,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
 											<select name="class" class="form-control">
-  											<option> Select Class</option>
+  											<option value="" selected> Select Class</option>
  											 <?php
    											 foreach($statements as $statement) { if (!ctype_alpha($statement[0])){ ?>
      										 <option value="<?php echo $statement[0] ?>"><?php echo $statement[0]; }?></option>
@@ -121,7 +121,7 @@
 </select> 
 										</div>
 									</div>
-									  <button type="submit" class="btn btn-success btn-block">Generate</button>
+									  <button type="submit" name="generate" class="btn btn-success btn-block">Generate</button>
 								</form>
 								<button style=" margin-top: 10px;" class="btn btn-danger btn-block" data-target="#mymodel"  data-toggle="modal"> Create Class</button>
 							
