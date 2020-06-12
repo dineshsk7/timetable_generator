@@ -10,12 +10,15 @@
         header('Location: ../authenticate/login.php');
     }
     require_once('../model/database.php');
-    global $db;
-		$query = 'Select username from teachers';
-		$names=$db->query($query);
-		$sql = "SHOW TABLES";
-  		$statements = $db->prepare($sql);
-          $statements->execute();
+    if(isset($_POST['classcheck'])){
+        $val=$_POST['class'];
+    }
+    if(isset($_POST['staffcheck'])){
+        $val=$_POST['staff'];
+    }
+    
+    $query = "Select * from $val";
+	$names=$db->query($query);
     
 ?>
 
@@ -29,47 +32,44 @@
 </head>
 <body>
 
-<h1> Teacher Screen </h1>
-<form action = "show.php" method = "POST">
-<label class="lable">Name</label>
-
-<div class="select">
-    <select name="staff" id="slct" required>
-    <option selected disabled>Choose Staff Name</option>
+<center><h1><?php echo $val ?> Time Table  </h1>
+<table>
+ <tr>
+   <th>Order</th>
+   <th>I</th>
+   <th>II</th>
+   <th>III</th>
+   <th>IV</th>
+   <th>V</th>
+   <th>VI</th>
+   <th>VII</th>
+   <th>IX</th>
+  </tr>
+ 
+  
+  
     <?php
    	foreach($names as $name) { ?>
-    <option value="<?php echo $name['username'] ?>"><?php echo $name['username'] ?></option>
+    <tr>
+    <td><?php echo $name['day_order'] ?></td>
+    <td><?php echo $name['h1'] ?></td>
+    <td><?php echo $name['h2'] ?></td>
+    <td><?php echo $name['h3'] ?></td>
+    <td><?php echo $name['h4'] ?></td>
+    <td><?php echo $name['h5'] ?></td>
+    <td><?php echo $name['h6'] ?></td>
+    <td><?php echo $name['h7'] ?></td>
+    <td><?php echo $name['h8'] ?></td>
+    
+  </tr>
  	<?php
-   	} ?>
-    </select>
-</div>
+    } ?>
+    
+   
+  
+  </table></center>
 
-<button class="button" style="vertical-align:middle" data-target="#mymodel"  data-toggle="modal" name="staffcheck"><span>ViewTimeTable </span></button>
-</from>
-
-<form action = "show.php" method = "POST">
-<label class="lable">Section</label>
-
-<div class="select">
-    <select name="class" id="slct" required>
-    <option selected disabled>Choose Section</option>
-    <?php
-   	foreach($statements as $statement) { if (!ctype_alpha($statement[0])){ ?>
-    <option value="<?php echo $statement[0] ?>"><?php echo $statement[0]; }?></option>
- 	<?php
-   	} ?>
-</select>
-</div>
-<button class="button" style="vertical-align:middle" data-target="#mymodel"  data-toggle="modal" name="classcheck"><span>ViewTimeTable </span></button>
-</form>
-<form action = "" method = "POST">
-    <input type="submit" class="Logout" value="Logout" name = "logout">
-</form>
-
-
-
-</div>
-					
+  <input type="submit" class="Logout" value="Print" onclick="window.print()">
 
 <style> 
 body {
@@ -78,13 +78,13 @@ body {
     justify-content: center;
     align-items: center;
     background-color: black;
+    background-image:linear-gradient(to top,#E100FF,#7F00FF);
 }
 h1 {
-    margin: 0 0 0.25em; 
+    margin: 20px 0px; 
     color: white;
     font-weight: 800;
     font-size: 50px;
-    
 }
 select {
     -webkit-appearance: none;
@@ -109,14 +109,12 @@ display: none;
     background: #2c3e50;
     overflow: hidden;
     border-radius: 15px;
-    margin:0 50px;
 }
 select {
     flex: 1;
     padding: 0 .5em;
     color: #fff;
     cursor: pointer;
-    
 }
 .select::after {
     content: '\25BC';
@@ -137,8 +135,7 @@ select {
 .lable{
       text-align: right;
       font-weight: 800;
-      
-      margin:0 50px;
+      padding-right: 14em;
       padding-bottom: 30px;
       padding-top: 30px;
       font-size: xx-large;
@@ -191,7 +188,7 @@ select option{
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        margin: 4px 2px;
+        margin: 25px 2px;
         cursor: pointer;
         -webkit-transition-duration: 0.4s; 
         transition-duration: 0.4s;    
@@ -200,9 +197,18 @@ select option{
 .Logout:hover {
     box-shadow: 0 12px 16px 0 rgba(248, 245, 245, 0.24),0 17px 50px 0 rgba(245, 245, 243, 0.19);
 }
-form{
-    margin: 0 35%;
+table,th,td{
+  position;absolute;
+  border-collapse:collapse;
+  border:1px solid gray;
+  padding:10px;
+  text-align:center;
+  font-weight:bold;
+  font-size:30px;
+  color:white;
+   
 }
+
 </style> 
 </body>
 </html>
