@@ -1,12 +1,18 @@
 <?php
     require_once('../model/database.php');
+    require_once('../model/teacher_db.php');
+    require_once('../model/helpdesk_db.php');
     if(isset($_POST['signup']))
 	{
 		// get the values
 		$username = $_POST['username'];
         $password = $_POST['password'];
         $type=$_POST['slct'];
-
+    if((is_valid_teacher_exist($username) && $type=="teachers") || (is_valid_helpdesk_exist($username) && $type=="helpdesk")) {
+            $error_message = "username is already exist";
+            echo "<script>alert('$error_message')</script>";
+    }
+    else{
 			
 	try{
 	
@@ -17,7 +23,7 @@
     
 
 	
-    
+    if($type=="teachers"){
     try{
     $query1="CREATE TABLE $username(day_order int(10) primary key,h1 varchar(30) NOT NULL,h2 varchar(30) NOT NULL,h3 varchar(30) NOT NULL,h4 varchar(30) NOT NULL,h5 varchar(30) NOT NULL,h6 varchar(30) NOT NULL,h7 varchar(30) NOT NULL,h8 varchar(30) NOT NULL)";
     $db->exec($query1);
@@ -46,6 +52,8 @@
 
 	
 }
+   header('Location: login.php');
+}
 	catch (PDOException $ex)
 {
 	$error_message = $ex->getMessage();
@@ -55,6 +63,7 @@
 		
 		
 	}
+}
 
 ?>
 

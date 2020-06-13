@@ -17,4 +17,23 @@
         $statement->closeCursor();
         return $valid;
     }
+
+        function is_valid_helpdesk_exist($username) {
+        global $db;
+        $query = 'SELECT * FROM helpdesk WHERE username = :username';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':username', $username);
+        $statement->execute();
+        if($statement->rowCount() == 1)
+        {
+            $valid = true;
+        }
+        else
+        {
+            $valid = false;
+        }
+        $statement->closeCursor();
+        return $valid;
+    }
+
 ?>

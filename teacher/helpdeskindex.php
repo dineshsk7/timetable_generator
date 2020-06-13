@@ -21,7 +21,7 @@
     </form>
     <form action = "" method = "POST">
     <input type="submit" class="Logout" value="Logout" name = "logout">
-	</form>
+</form>
 	</div>
   <style>
   body{
