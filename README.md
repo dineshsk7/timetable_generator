@@ -3,9 +3,15 @@ Timetable Generator
 
 ## Description:
 The project **Timetable Generator** is developed to avoids the complexity of setting and managing Timetable manually.
+Our project help Store the all time table data by the admin that shows to all the Teacher.
+It will create a timetable for staff and class.
 
-## Requirement Specification:
-HTML, CSS, Bootstrap, Javascript,MySQL,PHP.
+## Tech Stack and Tools:
+* Front End : HTML,CSS,Bootrstrap
+* Back End : MySQL
+* Server End : PHP
+* Version Control tool : GitHub
+* Text Editor : VS Code,Sublime 
 
 ## Index Page:
 ![index](https://raw.githubusercontent.com/dineshsk7/timetable_generator/master/images/Screenshot%20from%202020-06-13%2013-40-15.png?token=AMJQGCGOVWNF5H2SBKHQDVK66IIGA)
