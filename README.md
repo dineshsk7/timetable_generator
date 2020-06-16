@@ -7,7 +7,7 @@ Our project help Store the all time table data by the admin that shows to all th
 It will create a timetable for staff and class.
 
 ## Tech Stack and Tools:
-* Front End : HTML,CSS,Bootrstrap
+* Front End : HTML,CSS,Bootrstrap,JavaScript
 * Back End : MySQL
 * Server End : PHP
 * Version Control tool : GitHub
