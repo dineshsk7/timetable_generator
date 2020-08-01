@@ -13,7 +13,7 @@
     if(isset($_POST['classcheck'])){
         $val=$_POST['class'];
     }
-    if(isset($_POST['staffcheck'])){
+    if(isset($_POST['staff'])){
         $val=$_POST['staff'];
     }
     
@@ -35,23 +35,22 @@
 <center><h1><?php echo $val ?> Time Table  </h1>
 <table>
  <tr>
-   <th>Order</th>
-   <th>I</th>
-   <th>II</th>
-   <th>III</th>
-   <th>IV</th>
-   <th>V</th>
-   <th>VI</th>
-   <th>VII</th>
-   <th>VIII</th>
+   <th>Days</th>
+   <th>8:45 to 9:35</th>
+   <th>9:35 to 10:25</th>
+   <th>10:25 to 11:15</th>
+   <th>11:15 to 12:05</th>
+   <th>12:05 to 12:50</th>
+   <th>01:20 to 02:10</th>
+   <th>02:10 to 03:00</th>
   </tr>
- 
+ <?php $days=array("start","monday","tuesday","wednesday","thursday","friday","saturday");?>
   
   
     <?php
    	foreach($names as $name) { ?>
     <tr>
-    <td><?php echo $name['day_order'] ?></td>
+    <td><?php echo next($days) ?></td>
     <td><?php echo $name['h1'] ?></td>
     <td><?php echo $name['h2'] ?></td>
     <td><?php echo $name['h3'] ?></td>
@@ -59,7 +58,6 @@
     <td><?php echo $name['h5'] ?></td>
     <td><?php echo $name['h6'] ?></td>
     <td><?php echo $name['h7'] ?></td>
-    <td><?php echo $name['h8'] ?></td>
     
   </tr>
  	<?php
@@ -77,12 +75,11 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: black;
-    background-image:linear-gradient(to top,#E100FF,#7F00FF);
+    background-color: white;
 }
 h1 {
     margin: 20px 0px; 
-    color: white;
+    color: black;
     font-weight: 800;
     font-size: 50px;
 }
@@ -139,7 +136,7 @@ select {
       padding-bottom: 30px;
       padding-top: 30px;
       font-size: xx-large;
-      color: white;
+      color: black;
 }
 .button {
     display: inline-block;
@@ -205,7 +202,7 @@ table,th,td{
   text-align:center;
   font-weight:bold;
   font-size:30px;
-  color:white;
+  color:black;
    
 }
 

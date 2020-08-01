@@ -17,8 +17,8 @@
 			$_SESSION['helpdesk'] = $username;
 			header('Location: ../teacher/helpdeskindex.php');
 		} else {
-			$error_message =  "Login Failed. Invalid Email or Password";
-			echo $error_message;
+			$error_message =  "Login Failed. Invalid Username or Password";
+			echo "<script>alert('$error_message')</script>";
 		}
 	}
 ?>
@@ -34,9 +34,9 @@
 	<img src="login.png" class="avatar">
 	<h1>Login</h1>
 	<form action="" method="POST">
-		<p>username</p>
+		<p>Username</p>
 		<input type="text" name="username" placeholder="Enter username">
-				<p>password</p>
+				<p>Password</p>
 		<input type="password" name="password" placeholder="Enter password">
 		<input type="submit" value="submit" name="action">
 		<a href="signup.php">Sign Up</a>

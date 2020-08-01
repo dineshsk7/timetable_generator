@@ -17,7 +17,7 @@
         <input type="submit" value="Time Table Entry Screen">
     </form>
     <form action="../teacher/generate.php" method="POST">
-        <input type="submit" value="Generate Time Tabel">
+        <input type="submit" value="Generate Time Table">
     </form>
     <form action = "" method = "POST">
     <input type="submit" class="Logout" value="Logout" name = "logout">

@@ -11,11 +11,11 @@
         header('Location: ../authenticate/login.php');
     }
         require_once('../model/database.php');
-    if(isset($_POST['enter']))
-	{
-		// get the values
-		$table=$_POST['class'];
-    
+ 	if(isset($_POST['back']))
+    {
+        header('Location: helpdeskindex.php');
+    }
+   /* 
     try{
     $query1="CREATE TABLE $table(day_order int(10) primary key,h1 varchar(30) NOT NULL,h2 varchar(30) NOT NULL,h3 varchar(30) NOT NULL,h4 varchar(30) NOT NULL,h5 varchar(30) NOT NULL,h6 varchar(30) NOT NULL,h7 varchar(30) NOT NULL,h8 varchar(30) NOT NULL)";
     $db->exec($query1);
@@ -45,7 +45,7 @@
 		
 		
 
-
+*/
     	global $db;
 		$query = 'Select username from teachers';
 		$names=$db->query($query);
@@ -60,16 +60,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <body>
 <div class="col-md-4 col-md-offset-4" id="login">
 						<section id="inner-wrapper" class="login">
 							<article>
-								<form  action="../model/generate.php" method="POST">
+								<form  action="" method="POST">
 								    <p class="text-center">Generate Table</p></p>
 									<div class="form-group">
 										<div class="input-group">
-											<span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
+											<span class="input-group-addon"><i class="fa fa-user"> </i></span>
 											<select name="name" class="form-control">
   											<option value="" selected>Select Staff Name</option>
  											 <?php
@@ -80,39 +81,12 @@
 </select> 
 										</div>
 									</div>
+								   
 									<div class="form-group">
 										<div class="input-group">
-											<span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
-											<select name="day" class="form-control">
-  											<option value="" selected>Select Day Order</option>
- 											 <?php
-   											 for($i=1;$i<=6;$i++) { ?>
-     										 <option value="<?php echo $i ?>"><?php echo("Day ".strval($i)) ?></option>
- 											 <?php
-   											 } ?>
-</select> 
-										</div>
-									</div>
-								    
-									<div class="form-group">
-										<div class="input-group">
-											<span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
-											<select name="hour" class="form-control">
-  											<option value="" selected>Select Hour</option>
- 											 <?php
-   											 for($i=1;$i<=8;$i++) { ?>
-     										 <option value="<?php echo "h".strval($i) ?>"><?php echo(strval($i)."st Hour") ?></option>
- 											 <?php
-   											 } ?>
-</select> 
-										</div>
-									</div>
-								    
-									<div class="form-group">
-										<div class="input-group">
-											<span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
+											<span class="input-group-addon"><i class="fas fa-door-open"> </i></span>
 											<select name="class" class="form-control">
-  											<option value="" selected> Select Class</option>
+  											<option value="" selected> Select Section</option>
  											 <?php
    											 foreach($statements as $statement) { if (!ctype_alpha($statement[0])){ ?>
      										 <option value="<?php echo $statement[0] ?>"><?php echo $statement[0]; }?></option>
@@ -121,37 +95,19 @@
 </select> 
 										</div>
 									</div>
-									  <button type="submit" name="generate" class="btn btn-success btn-block">Generate</button>
+									  <button type="submit" name="generate" class="btn btn-danger btn-block">Generate</button>
 								</form>
-								<button style=" margin-top: 10px;" class="btn btn-danger btn-block" data-target="#mymodel"  data-toggle="modal"> Create Class</button>
-							
-
+								  <div>
+									  <form style="float: left;" action = "" method = "POST">
+    <button class="Logout" type="submit" name = "logout">logout</button>
+								</form>
+								<form style="float: right;" action = "" method = "POST">
+    <button class="Logout" type="submit" name = "back">back</button>
+								</form>
+							</div>
 							</article>
 						</section>
 					</div>
-					 <div class="modal" id="mymodel"> 
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header" style=" background-color: #333; font-family: 'Josefin Sans', sans-serif;">
-                  <b><h3 style="color: #fff;" class="text-center">ENTER THE CLASS NAME</h3></b><br>
-                    <button style="color:white" type="button" class="close" data-dismiss="modal">&times;</button></div>
-                    <div class="modal-body" style="background-color: #63a4ff;
-background-image: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);">
-                      <form action="" method="POST">
-                      										<div class="form-group">
-										<div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
-                        <input type="text" class="form-control" name="class" placeholder="Enter Class Name">
-                    </div>
-                </div>
-                 <button style="margin-left: 45%;" type="submit" name="enter" class="btn btn-danger">ENTER</button>
-                      </form>
-                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-
 		
 
 
@@ -228,6 +184,24 @@ background-image: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);">
         border-right-color: rgb(243, 170, 12);
         border-right-style: none;
         border-right-width: medium;
+}
+.Logout{
+        background-color: #2c3e50; 
+        border: none;
+        color: white;
+        padding: 5px 35px;
+        text-align: left;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        margin: 4px 2px;
+        cursor: pointer;
+        -webkit-transition-duration: 0.4s; 
+        transition-duration: 0.4s;    
+        border-radius: 10em;  
+}
+.Logout:hover {
+    box-shadow: 0 12px 16px 0 rgba(248, 245, 245, 0.24),0 17px 50px 0 rgba(245, 245, 243, 0.19);
 }
 </style>
 </body>

@@ -25,12 +25,12 @@
 	
     if($type=="teachers"){
     try{
-    $query1="CREATE TABLE $username(day_order int(10) primary key,h1 varchar(30) NOT NULL,h2 varchar(30) NOT NULL,h3 varchar(30) NOT NULL,h4 varchar(30) NOT NULL,h5 varchar(30) NOT NULL,h6 varchar(30) NOT NULL,h7 varchar(30) NOT NULL,h8 varchar(30) NOT NULL)";
+    $query1="CREATE TABLE $username(day_order int(10) primary key,h1 varchar(30) NOT NULL,h2 varchar(30) NOT NULL,h3 varchar(30) NOT NULL,h4 varchar(30) NOT NULL,h5 varchar(30) NOT NULL,h6 varchar(30) NOT NULL,h7 varchar(30) NOT NULL)";
     $db->exec($query1);
-    $in="INSERT INTO $username(day_order,h1,h2,h3,h4,h5,h6,h7,h8) values(?,?,?,?,?,?,?,?,?)";
+    $in="INSERT INTO $username(day_order,h1,h2,h3,h4,h5,h6,h7) values(?,?,?,?,?,?,?,?)";
     $stmt3=$db->prepare($in);
     for ($x = 1; $x <= 6; $x++) {
-        $stmt3->execute([$x,'-','-','-','-','-','-','-','-']);
+        $stmt3->execute([$x,'-','-','-','-','-','-','-']);
       }
     
     }

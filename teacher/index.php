@@ -1,4 +1,6 @@
+<?php include('../view/header.php');?>
 <?php
+    require_once('../model/database.php');
     session_start();
     if(!isset($_SESSION['teacher']))
     {
@@ -9,200 +11,108 @@
         unset($_SESSION['teacher']);
         header('Location: ../authenticate/login.php');
     }
-    require_once('../model/database.php');
-    global $db;
-		$query = 'Select username from teachers';
-		$names=$db->query($query);
-		$sql = "SHOW TABLES";
-  		$statements = $db->prepare($sql);
-          $statements->execute();
-    
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Teacher screen</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-<h1> Teacher Screen </h1>
-<form action = "show.php" method = "POST">
-<label class="lable">Name</label>
-
-<div class="select">
-    <select name="staff" id="slct" required>
-    <option selected disabled>Choose Staff Name</option>
-    <?php
-   	foreach($names as $name) { ?>
-    <option value="<?php echo $name['username'] ?>"><?php echo $name['username'] ?></option>
- 	<?php
-   	} ?>
-    </select>
-</div>
-
-<button class="button" style="vertical-align:middle" data-target="#mymodel"  data-toggle="modal" name="staffcheck"><span>ViewTimeTable </span></button>
-</from>
-
-<form action = "show.php" method = "POST">
-<label class="lable">Section</label>
-
-<div class="select">
-    <select name="class" id="slct" required>
-    <option selected disabled>Choose Section</option>
-    <?php
-   	foreach($statements as $statement) { if (!ctype_alpha($statement[0])){ ?>
-    <option value="<?php echo $statement[0] ?>"><?php echo $statement[0]; }?></option>
- 	<?php
-   	} ?>
-</select>
-</div>
-<button class="button" style="vertical-align:middle" data-target="#mymodel"  data-toggle="modal" name="classcheck"><span>ViewTimeTable </span></button>
+global $db;
+        $query = 'Select section from teachers where username=$_SESSION["teacher"]';
+        $section=$db->query($query);
+        $id='Select section from teachers where username=$_SESSION["teacher"]';
+        ?>
+<div class="loginbox">
+    <h1><?php echo($_SESSION['teacher']) ?></h1><br>
+   <form action="show.php" method="POST">
+        <button type="submit" data-target="#mymodel"  data-toggle="modal" name="staff" value="<?php echo($_SESSION['teacher']) ?>">My Time Table</button>
+    </form>
+    <form action="" method="POST">
+        <button type="submit">Other Sections</button>
+    </form>
+    <form action = "" method = "POST">
+    <button type="submit" name = "logout">Logout</button>
 </form>
-<form action = "" method = "POST">
-    <input type="submit" class="Logout" value="Logout" name = "logout">
-</form>
-
-
-
-</div>
-					
-
-<style> 
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
+    </div>
+  <style>
+  body{
+    margin: 0;
+    padding: 0;
+    background: black;
+    background-size: cover;
+    background-position: center;
+    font-family:sans-serif;
 }
-h1 {
-    margin: 0 0 0.25em; 
-    color: white;
-    font-weight: 800;
-    font-size: 50px;
-    
-}
-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    outline: 0;
-    box-shadow: none;
-    border: 0 !important;
-    background: #fb2525;
-    background-image: none;
-}
-select::-ms-expand {
-display: none;
-}
-.select {
-    position: relative;
-    display: flex;
-    width: 35em;
-    height: 3.5em;
-    line-height: 3;
-    background: #2c3e50;
-    overflow: hidden;
-    border-radius: 15px;
-    margin:0 50px;
-}
-select {
-    flex: 1;
-    padding: 0 .5em;
+.loginbox{
+    width: 320px;
+    height: 420px;
+    background: #000;
     color: #fff;
-    cursor: pointer;
+    top:50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%); 
+    box-sizing: border-box;
+    padding: 70px 30px;
     
 }
-.select::after {
-    content: '\25BC';
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
     position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0 1em;
-    background: #fb2525;
-    cursor: pointer;
-    pointer-events: none;
-    -webkit-transition: .25s all ease;
-    -o-transition: .25s all ease;
-    transition: .25s all ease;
+    top: -50px;
+    left: calc(50% - 50px);
+
 }
-.select:hover::after {
-    color: rgb(221, 240, 51);
-}
-.lable{
-      text-align: right;
-      font-weight: 800;
-      
-      margin:0 50px;
-      padding-bottom: 30px;
-      padding-top: 30px;
-      font-size: xx-large;
-      color: white;
-}
-.button {
-    display: inline-block;
-    border-radius: 25px;
-    background-color:#2c3e50;
-    border: none;
-    color: #FFFFFF;
+h1{
+    margin: 0;
+    padding: 0 0 20px;
     text-align: center;
-    font-size: 25px;
-    padding: 10px;
-    width: 20em;
-    transition: all 0.5s;
+    font-size: 22px;
+
+}
+.loginbox p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+.loginbox button{
+    width: 100%;
+    margin-bottom:20px;
+
+}
+.loginbox input[type="text"],input[type="password"]
+{
+    border:none;
+    border-bottom: 1px solid #fff;
+    background:transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+.loginbox button[type="submit"]{
+    border:none;
+    outline: none;
+    height: 40px;
+    background:#fb2525;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+
+}
+.loginbox button[type="submit"]:hover{
     cursor: pointer;
-    margin: 50px;
+    background:#ffc107;
+    color: #000;
 }
-.button span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
+.loginbox a{
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color:darkgrey;
+
+} 
+.loginbox a:hover{
+    color:#ffc107;
 }
-.button span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-}
-.button:hover span {
-    padding-right: 25px;
-}
-.button:hover span:after {
-    opacity: 1;
-    right: 0;
-}
-select option{
-    font-size: 17px;
-}
-.Logout{
-        background-color: #2c3e50; 
-        border: none;
-        color: white;
-        padding: 15px 32px ;
-        text-align: left;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        -webkit-transition-duration: 0.4s; 
-        transition-duration: 0.4s;    
-        border-radius: 10em;  
-}
-.Logout:hover {
-    box-shadow: 0 12px 16px 0 rgba(248, 245, 245, 0.24),0 17px 50px 0 rgba(245, 245, 243, 0.19);
-}
-form{
-    margin: 0 35%;
-}
-</style> 
-</body>
-</html>
+
+  </style>
+<?php include('../view/footer.php');?>
+

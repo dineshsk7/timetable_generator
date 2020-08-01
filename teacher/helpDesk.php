@@ -10,6 +10,10 @@
         unset($_SESSION['helpdesk']);
         header('Location: ../authenticate/login.php');
     }
+        if(isset($_POST['back']))
+    {
+        header('Location: helpdeskindex.php');
+    }
     	global $db;
 		$query = 'Select username from teachers';
 		$names=$db->query($query);
@@ -21,24 +25,26 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <body>
 <div class="col-md-4 col-md-offset-4" id="login">
 						<section id="inner-wrapper" class="login">
 							<article>
 								<form action="../model/helpDesk.php" method="POST">
-								    <p class="text-center">Time table entry</p></p>
+								    <h3 class="text-center"><b>Time table entry</b></h3>
+								    <p style="color: grey; font-size: .93em;">[Fill in all the fields to create timetable]</p>
 									<div class="form-group">
 										<div class="input-group">
-											<span class="input-group-addon"><i class="fa fa-user"> </i></span>
+											<span class="input-group-addon"><i class="fas fa-user-tag"></i></span>
 											<input type="text" name="id" class="form-control" placeholder="Enter Staff ID [use only 6 digits]" required>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="input-group">
-											<span class="input-group-addon"><i class="fa fa-envelope"> </i></span>
+											<span class="input-group-addon"><i class="fa fa-user"></i></span>
 											<select name="name" class="form-control" required>
-  											<option >Select Staff Name</option>
+  											<option value="">Select Staff Name</option>
  											 <?php
    											 foreach($names as $name) { ?>
      										 <option value="<?php echo $name['username'] ?>"><?php echo $name['username'] ?></option>
@@ -49,25 +55,32 @@
 									</div>
 									<div class="form-group">
 										<div class="input-group">
-											<span class="input-group-addon"><i class="fa fa-key"> </i></span>
+											<span class="input-group-addon"><i class="fas fa-address-book"> </i></span>
 											<input type="text" name="subject" class="form-control" placeholder="Enter Subject" required>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="input-group">
-											<span class="input-group-addon"><i class="fa fa-key"> </i></span>
-											<input type="text" name="Section" class="form-control" placeholder="Enter Section" required>
+											<span class="input-group-addon"><i class="fas fa-door-open"> </i></span>
+											<input type="text" name="section" class="form-control" placeholder="Enter Section" required>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="input-group">
-											<span class="input-group-addon"><i class="fa fa-key"> </i></span>
+											<span class="input-group-addon"><i class="fas fa-clock"> </i></span>
 											<input type="text" name="periods" class="form-control" placeholder="Enter Number of Periods" required>
 										</div>
 									</div>
 
-									  <button type="submit" class="btn btn-success btn-block">Submit</button>
+									  <button type="submit" class="btn btn-danger btn-block">Submit</button></form>
+									  <div>
+									  <form style="float: left;" action = "" method = "POST">
+    <button class="Logout" type="submit" name = "logout">logout</button>
 								</form>
+								<form style="float: right;" action = "" method = "POST">
+    <button class="Logout" type="submit" name = "back">back</button>
+								</form>
+							</div>
 							</article>
 						</section>
 					</div>
@@ -149,6 +162,24 @@
         border-right-color: rgb(243, 170, 12);
         border-right-style: none;
         border-right-width: medium;
+}
+.Logout{
+        background-color: #2c3e50; 
+        border: none;
+        color: white;
+        padding: 5px 35px;
+        text-align: left;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        margin: 4px 2px;
+        cursor: pointer;
+        -webkit-transition-duration: 0.4s; 
+        transition-duration: 0.4s;    
+        border-radius: 10em;  
+}
+.Logout:hover {
+    box-shadow: 0 12px 16px 0 rgba(248, 245, 245, 0.24),0 17px 50px 0 rgba(245, 245, 243, 0.19);
 }
 </style>
 </body>
