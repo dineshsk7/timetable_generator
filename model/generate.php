@@ -56,13 +56,7 @@
 	$result->execute(['-']); 
 	$number_of_rows = $result->fetchColumn();
 	$count+=$number_of_rows;
-	$sql = "SELECT count(*) FROM $name WHERE h8 = ?"; 
-	$result = $db->prepare($sql); 
-	$result->execute(['-']); 
-	$number_of_rows = $result->fetchColumn();
-	$count+=$number_of_rows;
-
-	$count=48-$count;
+	$count=42-$count;
 	$query = 'Select s_name from staff';
 	$names=$db->query($query);
 
@@ -112,7 +106,9 @@ $sql = "UPDATE $class SET $hour=? WHERE day_order=?";
 $stmt= $db->prepare($sql);
 $stmt->execute([$name,$day]);
 
-header('Location: ../teacher/generate.php');
+	include('../teacher/generate.php');
+    $error_message= "Succesfully added";
+    echo "<script>alert('$error_message')</script>";
 	}
 	else{
 		if($checker1==0){

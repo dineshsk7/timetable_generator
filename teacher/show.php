@@ -9,6 +9,10 @@
         unset($_SESSION['teacher']);
         header('Location: ../authenticate/login.php');
     }
+           if(isset($_POST['back']))
+    {
+        header('Location: index.php');
+    }
     require_once('../model/database.php');
     if(isset($_POST['classcheck'])){
         $val=$_POST['class'];
@@ -32,7 +36,7 @@
 </head>
 <body>
 
-<center><h1><?php echo $val ?> Time Table  </h1>
+<center><h1><?php echo ucfirst($val);?> Time Table  </h1>
 <table>
  <tr>
    <th>Days</th>
@@ -44,7 +48,7 @@
    <th>01:20 to 02:10</th>
    <th>02:10 to 03:00</th>
   </tr>
- <?php $days=array("start","monday","tuesday","wednesday","thursday","friday","saturday");?>
+ <?php $days=array("start","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");?>
   
   
     <?php
@@ -66,9 +70,15 @@
    
   
   </table></center>
-
-  <input type="submit" class="Logout" value="Print" onclick="window.print()">
-
+<div>
+  <input type="submit" class="Logout" value="print" onclick="window.print()">
+    <form style="float: right;" action = "" method = "POST">
+    <button class="Logout" type="submit" name = "logout">logout</button>
+                                </form>
+                                <form style="float: left;" action = "" method = "POST">
+    <button class="Logout" type="submit" name = "back">back</button>
+                                </form>
+</div>
 <style> 
 body {
     display: flex;

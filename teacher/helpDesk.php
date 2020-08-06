@@ -61,12 +61,6 @@
 									</div>
 									<div class="form-group">
 										<div class="input-group">
-											<span class="input-group-addon"><i class="fas fa-door-open"> </i></span>
-											<input type="text" name="section" class="form-control" placeholder="Enter Section" required>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="input-group">
 											<span class="input-group-addon"><i class="fas fa-clock"> </i></span>
 											<input type="text" name="periods" class="form-control" placeholder="Enter Number of Periods" required>
 										</div>
@@ -74,10 +68,10 @@
 
 									  <button type="submit" class="btn btn-danger btn-block">Submit</button></form>
 									  <div>
-									  <form style="float: left;" action = "" method = "POST">
+									  <form style="float: right;" action = "" method = "POST">
     <button class="Logout" type="submit" name = "logout">logout</button>
 								</form>
-								<form style="float: right;" action = "" method = "POST">
+								<form style="float: left;" action = "" method = "POST">
     <button class="Logout" type="submit" name = "back">back</button>
 								</form>
 							</div>

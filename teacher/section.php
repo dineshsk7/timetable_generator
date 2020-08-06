@@ -16,15 +16,25 @@ global $db;
         $query = 'Select section from teachers where username=$_SESSION["teacher"]';
         $section=$db->query($query);
         $id='Select section from teachers where username=$_SESSION["teacher"]';
+         $sql = "SHOW TABLES";
+        $statements = $db->prepare($sql);
+          $statements->execute();
         ?>
 <div class="loginbox">
-    <h1><?php echo ucfirst($_SESSION['teacher']) ?></h1><br>
-   <form action="show.php" method="POST">
-        <button type="submit" data-target="#mymodel"  data-toggle="modal" name="staff" value="<?php echo($_SESSION['teacher']) ?>">My Time Table</button>
-    </form>
-    <form action="section.php" method="POST">
-        <button type="submit">Other Sections</button>
-    </form>
+    <h1>Section Time Table</h1><br>
+    <form action = "show.php" method = "POST">
+<div class="select">
+    <select name="class" id="slct" required>
+    <option value="" selected disabled class="text-center">Choose Section</option>
+    <?php
+    foreach($statements as $statement) { if (!ctype_alpha($statement[0])){ ?>
+    <option value="<?php echo $statement[0] ?>"><?php echo $statement[0]; }?></option>
+    <?php
+    } ?>
+</select>
+</div>
+<button type="submit" style="vertical-align:middle" data-target="#mymodel"  data-toggle="modal" name="classcheck"><span>ViewTimeTable </span></button>
+</form>
     <form action = "" method = "POST">
     <button type="submit" name = "logout">Logout</button>
 </form>
@@ -72,12 +82,12 @@ h1{
     padding: 0;
     font-weight: bold;
 }
-.loginbox button{
+.loginbox button,select{
     width: 100%;
     margin-bottom:20px;
 
 }
-.loginbox input[type="text"],input[type="password"]
+.loginbox input[type="text"],input[type="password"],select
 {
     border:none;
     border-bottom: 1px solid #fff;
@@ -87,7 +97,7 @@ h1{
     color: #fff;
     font-size: 16px;
 }
-.loginbox button[type="submit"]{
+.loginbox button[type="submit"],select{
     border:none;
     outline: none;
     height: 40px;
